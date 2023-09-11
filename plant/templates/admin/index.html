@@ -1,0 +1,38 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+
+{% if current_user.is_authenticated %}
+<div class="jumbotron">
+    <h1 class="display-4">Plant Admin</h1>
+    <p class="lead">Gardening is a way to a healthy life.</p>
+    <hr class="my-4">
+    <p>You're an administrative user that's why you're accessing this!</p>
+    <p class="lead">
+        <a class="btn btn-danger btn-lg" href="{{url_for('core.admin_logout')}}" role="button">Logout</a>
+        <a href="{{url_for('core.home')}}" class="btn btn-success btn-lg">Go to Plant</a>
+    </p>
+</div>
+{% else %}
+<div class="jumbotron">
+    <h1 class="display-4">Plant Admin Login</h1>
+    <p class="lead">Gardening is a way to a healthy life.</p>
+    <hr class="my-4">
+    <p>You're not logged in as an Administrative user. Please login.</p>
+    <form method="post" action="{{url_for('core.admin_login')}}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Username</label>
+          <input name="username" type="text" class="form-control" placeholder="Enter username" required>
+          <small class="form-text text-muted">Put your administrative username.</small>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input name="password" type="password" class="form-control" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login as Admin</button>
+        <a href="{{url_for('core.home')}}" class="btn btn-success">Go to Plant</a>
+    </form>
+</div>
+{% endif %}
+{% endblock %}

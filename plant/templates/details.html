@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}| {{product.name}}{% endblock title %}
+
+{% block content %}
+<div class="my-2 py-2">
+  <div class="columns">
+    <div class="column col-6 col-md-12">
+      {% if product.image %}
+        <figure class="figure">
+          <img loading="lazy" class="img-responsive img-fit-cover" src="{{url_for('static', filename=product.image)}}">
+        </figure>
+      {% endif %}
+    </div>
+    <div class="column col-6 col-md-12">
+      <div class="container">
+        <div class="my-2 py-2">
+          <h2>{{product.name}}</h2>
+          <h5>Rs. {{product.price}}</h5>
+          <p>{{product.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="my-2 py-2">
+    <form 
+      hx-post="{{url_for('shop.details', slug=product.slug)}}"
+      hx-target="#cartMenu"
+      hx-swap="outerHTML"
+    > 
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+      <input type="hidden" name="product_id" value="{{product.id}}">
+      <button type="submit" class="btn btn-primary">Add to Cart</button>
+    </form>
+  </div>
+  <div class="columns py-2">
+    <div class="column col-12">
+      {% if product.how_to_maintain %}
+        <h4>How to maintain</h4>
+        <p>{{product.how_to_maintain}}</p>
+      {% endif %}
+    </div>
+    <div class="column col-12">
+      {% if product.where_to_keep %}
+        <h4>Where to keep</h4>
+        <p>{{product.where_to_keep}}</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- HERO SECTION -->
+<div class="my-2 py-2">
+  <div class="hero bg-gray pl-2">
+    <div class="hero-body">
+      <h1>Plant</h1>
+      <p>Gardening is a way to a healthy life</p>
+    </div>
+  </div>
+</div>
+<!-- END HERO -->
+
+<!-- PRODUCT LIST -->
+<div class="my-2 py-2">
+  <div class="columns">
+    {% for product in products %}
+      {% include 'parts/item.html' %}
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}

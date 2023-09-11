@@ -1,0 +1,16 @@
+<ul class="pagination">
+    <li class="page-item {% if not products.has_prev %}disabled{% endif %}">
+      <a 
+        href="?page={{products.prev_num}}{% if query %}&query={{query}}{% endif %}{% if category_selected %}&category={{category_selected}}{% endif %}" 
+        tabindex="-1">
+        Previous
+      </a>
+    </li>
+    <li class="page-item {% if not products.has_next %}disabled{% endif %}">
+      <a 
+        href="?page={{products.next_num}}{% if query %}&query={{query}}{% endif %}{% if category_selected %}&category={{category_selected}}{% endif %}"
+      >
+      Next
+    </a>
+    </li>
+</ul>

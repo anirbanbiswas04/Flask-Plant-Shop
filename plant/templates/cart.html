@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}| Cart{% endblock title %}
+
+{% block content %}
+<div class="my-2 py-2">
+  <div class="columns">
+    <div class="column col-12">
+      {% if cart_context|length > 0 %}
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in cart_context %}
+              {% include 'parts/cart_item.html' %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="column col-auto mt-2 pt-2">
+        <div class="container bg-gray p-2">
+          <h5>Total Amount: Rs. {% include 'parts/total_amount.html' %}</h5>
+          <a href="{{url_for('cart.checkout') }}" class="btn btn-primary">Checkout</a> 
+        </div>
+      </div>
+    {% else %}
+      <h4>You have no items in cart.</h4>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,34 @@
+.page-transition {
+    animation: transitionIn .75s;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 60px);
+}
+
+.aspect-ratio {
+    position: relative;
+    width: 100%;
+}
+
+footer {
+    margin-top: auto;
+}
+
+@keyframes transitionIn {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@supports (aspect-ratio:3/4) {
+    .aspect-ratio {
+        aspect-ratio: 3/4;
+        object-fit: cover;
+    }    
+}

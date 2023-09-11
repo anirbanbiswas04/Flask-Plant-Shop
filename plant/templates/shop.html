@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}| Shop{% endblock title %}
+
+{% block content %}
+  <div class="my-2 py-2">
+    <div class="dropdown text-uppercase">
+      <a href="#" class="btn bg-link dropdown-toggle" tabindex="0">
+        CATEGORIES <i class="icon icon-caret"></i>
+      </a>
+      <ul class="menu">
+        {% for category in categories %}
+          <li><a href="?category={{category.id}}" {% if category.name == category_name %}class="active"{% endif %}>{{category.name}}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="columns my-2 py-2">
+      {% if category_selected %}
+        <h4 class="m-2 p-2 column col-12 text-uppercase">{{category_name}}</h4>
+      {% endif %}
+      {% for product in products %}
+        {% include 'parts/item.html' %}
+      {% else %}
+      <div class="text-uppercase m-2 p-2">
+        <h4>Nothing to display!</h4>
+      </div>
+      {% endfor %}
+    </div>
+    {% include 'parts/pagination.html' %}
+  </div>
+{% endblock content %}

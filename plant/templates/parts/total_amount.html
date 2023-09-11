@@ -1,0 +1,7 @@
+<span
+    hx-get="{{url_for('cart.get_total_amount')}}"
+    hx-trigger="update-cart-menu from:body"
+    hx-swap="outerHTML"
+>
+    {{cart_context.get_total_amount()}}
+</span>

@@ -1,0 +1,6 @@
+<span 
+    id="cartMenu" 
+    hx-get="{{url_for('cart.get_cart_count')}}"
+    hx-trigger="update-cart-menu from:body"
+    hx-swap="outerHTML"
+>{{cart_context|length}}</span>

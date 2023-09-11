@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PLant {% block title %}{% endblock title %}</title>
+  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+  <link rel="stylesheet" href="{{url_for('core.static', filename='style.css')}}">
+</head>
+<body>
+  <div class="container grid-md" id="wrapper">
+      <header class="navbar pt-2 mt-2">
+      <section class="navbar-section">
+        <a href="{{ url_for('core.home') }}" class="navbar-brand mr-2">
+          <strong>Plant</strong>
+        </a>
+        <a href="{{ url_for('shop.main_shop') }}" class="btn btn-link">Shop</a>
+        <a href="{{ url_for('cart.cart_page') }}" class="btn btn-link">Cart({% include 'parts/cart_menu.html' %})</a>
+      </section>
+      <section class="navbar-section">
+        <form action="{{url_for('shop.search')}}">
+          <div class="input-group input-inline">
+            <input class="form-input" type="text" name="query" placeholder="Search...">
+            <button class="btn btn-primary input-group-btn">
+              <i class="icon icon-search"></i>
+            </button>
+          </div>
+        </form>
+      </section>
+    </header>
+    <div class="page-transition">
+      <main>
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="toast toast-{{category}} pt-2 mt-2">{{ message }}</div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+        {% block content %}{% endblock content %}
+      </main>
+      <footer>
+        <div class="empty">
+          <p class="empty-subtitle">Plant (c) 2023</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
+</body>
+</html>

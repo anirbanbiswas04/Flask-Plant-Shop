@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}| Search{% endblock title %}
+
+{% block content %}
+<div class="my-2 py-2">
+  <div class="text-uppercase my-2 py-2">
+    {% if query %}
+    <h4>search term: <strong>{{query}}</strong></h4>
+    {% endif %}
+  </div>
+<div class="columns my-2 py-2">
+  {% for product in products %}
+    {% include 'parts/item.html' %}
+  {% else %}
+    <h4 class="m-2 p-2">Nothing to display</h4>
+  {% endfor %}
+</div>
+  {% include 'parts/pagination.html' %}
+</div>
+{% endblock content %}
