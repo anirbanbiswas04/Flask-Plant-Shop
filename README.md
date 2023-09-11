@@ -1,6 +1,6 @@
 # Flask Plant Shop
 
-A E-commerce site built with Flask and Spectre.css.
+An E-commerce site built with Flask and Spectre.css.
 
 ## Description
 
